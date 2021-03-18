@@ -1,0 +1,22 @@
+
+
+.card-deck{
+    background-color: aquamarine;
+    color:rgb(124, 122, 241);
+    border: solid 4px rgb(124, 122, 241);
+}
+.card-deck img{
+    width: 250px;
+    height: 350px;
+}
+
+.card-body{
+    background-color: aquamarine;
+    border: solid 4px rgb(124, 122, 241);
+}
+
+
+
+.btns{
+    display: flex;
+}

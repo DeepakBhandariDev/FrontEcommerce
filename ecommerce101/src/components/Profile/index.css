@@ -1,0 +1,15 @@
+.profile{
+    height: 500px;
+    width: 500px;
+    background-color: deepskyblue;
+    
+    margin: auto;
+    margin-top: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.profile h2{
+    margin-top: 5px;
+}
