@@ -3,11 +3,14 @@ import Header from "../components/Header";
 import Login from "../components/Login";
 import { Formik } from "formik";
 import { postAProduct } from "../redux/actions/product";
-import { useDispatch } from "react-redux";
-import {Product} from '../types'
+import { useDispatch, useSelector } from "react-redux";
+import {Product, AppState} from '../types'
+
+
 
 export default function Home() {
   const dispatch = useDispatch();
+  const token = useSelector((state: AppState) => state.user.token)
 
   return (
     <div className="form">
@@ -53,7 +56,7 @@ export default function Home() {
         onSubmit={(data, { setSubmitting }) => {
           setTimeout(() => {
             setSubmitting(true);
-            dispatch(postAProduct({ ...data }));
+            dispatch(postAProduct({ ...data },token));
             console.log(data)
 
             setSubmitting(false);

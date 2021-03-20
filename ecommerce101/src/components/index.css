@@ -12,6 +12,7 @@
     font-size: 13px;
     text-shadow: 0 0.04em 0.04em rgba(0, 0, 0, 0.35);
     text-align: center;
+    justify-content: space-around;
     transition: all 0.2s;
     background-color: rgb(124, 122, 241);
     

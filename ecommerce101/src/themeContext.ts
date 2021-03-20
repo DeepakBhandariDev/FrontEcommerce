@@ -2,7 +2,7 @@ import React from 'react'
 
 export const themes = {
     blend: {
-        color: '#7fffd4'
+        color: '#12c7fd'
     },
     dark: {
         color: '#21130d'

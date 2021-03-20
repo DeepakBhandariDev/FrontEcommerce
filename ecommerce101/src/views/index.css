@@ -4,12 +4,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    border-bottom: 2px solid rgb(168, 43, 43);
+    border-bottom: 2px solid  rgb(124, 122, 241);;
   }
   .hdd{
       width: 100%;
       margin-bottom: 30px;
-      border-bottom: 2px solid rgb(168, 43, 43);
+      border-bottom: 2px  rgb(124, 122, 241);
       display: flex;
       flex-wrap: wrap;
       justify-content: center;

@@ -1,6 +1,4 @@
-import React, { useContext } from "react";
-import Card from "react-bootstrap/Card";
-import { CardDeck } from "react-bootstrap";
+import React, { useContext, useEffect } from "react";
 import {  Product } from "../../types";
 import "./index.css";
 import CombBtn from "../CombBtn";
@@ -11,7 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {AppState} from '../../types'
 
-export default function ProductCard({
+export default function CartCard({
   _id,
   imageUrl,
   name,
@@ -34,7 +32,7 @@ export default function ProductCard({
     quantity
   };
 
-  const location = useLocation()
+  const location = useLocation();
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -42,25 +40,29 @@ export default function ProductCard({
     history.push(`/products/${_id}`);
   };
 
+  useEffect(() => {
+    console.log("changed")
+  },[dispatch]);
+
   const { theme, switchTheme } = useContext(ThemeContext);
   const style = { backgroundColor: theme.color };
-  const products = useSelector((state: AppState) => state.cart.cartProducts);
 
   return (
-    <CardDeck className="card-deck" style={{ margin: "15px" }}>
-      <Card key="name" className="cardIn">
+    <div className="cart-card">
+      <div className="cart-image" key={_id}>
         <img src={imageUrl} />
-
-        <Card.Body className="card-body" style={style}>
-          <Card.Title>
+        </div>
+        <div className="card-body" style={style}>
+          
             <h3>{name}</h3>
-          </Card.Title>
-          <Card.Text>{description}</Card.Text>
-        </Card.Body>
-        <div className="btn-cntnr">
+          <h2>{quantity}</h2>
+          {description}
           <h4>{brand}</h4>
           <h4>{price}€</h4>
-          <div className="btns">
+        </div>
+        <div className="cart-btn-cntnr">
+          
+          
             <CombBtn
               _id={product._id}
               key={product.name}
@@ -74,9 +76,9 @@ export default function ProductCard({
               quantity={product.quantity}
             />
             <DetailsBtn viewProduct={viewProduct} />
-          </div>
-        </div>
-      </Card>
-    </CardDeck>
+          
+        
+      </div>
+    </div>
   );
 }

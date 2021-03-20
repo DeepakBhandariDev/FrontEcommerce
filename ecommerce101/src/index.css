@@ -5,6 +5,12 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: rgb(124, 122, 241);
+  clip-path: polygon(0 0, 100% 0, 100% 65%, 65% 100%, 0 100%, 5% 48%);
+
+}
+body :hover{
+  clip-path: inset(0);
 }
 
 code {
@@ -15,4 +21,5 @@ code {
 .body-container{
   margin-top: 25px;
   min-height: 90vh;
+  background-color: white;
 }

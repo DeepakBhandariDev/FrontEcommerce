@@ -4,6 +4,7 @@ import axios from 'axios'
 
 
 
+
 export function addAllProducts(products: Product[]): ProductsActions{
     return {
         type: ADD_ALL_PRODUCTS,
@@ -35,12 +36,16 @@ export function getAllProducts() {
     }
   }
 
-export function postAProduct(product: Product) {
+export function postAProduct(product: Product, token: string) {
     return async (dispatch: Dispatch) => {
       try{
         const baseUrl = "http://localhost:5000/api/v1/product"
         await axios.post(baseUrl, {
-            ...product
+            ...product,
+          },{
+            headers: {
+              Authorization: `Bearer ${token}` 
+            }
           })
           .then(function (response: any) {
               console.log(response)

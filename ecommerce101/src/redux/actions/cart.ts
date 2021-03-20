@@ -1,40 +1,35 @@
 import { Dispatch } from 'redux'
 
 import {
-  ADD_TO_CART,
-  REMOVE_FROM_CART,
   Product,
   CartActions,
-  ADD_ALL_PRODUCTS_TO_CART
+  ADD_TO_CART,
+  DELETE_CART_ITEM,
+  ADD_QTY,
+  SUBTRACT_QUANTITY_CART_ITEM
 } from '../../types'
 
 
-
 export function addToCart(product: Product): CartActions {
+  let quantityToAdd = 1;
   return {
-    type: ADD_TO_CART,
-    payload: {
-      product,
-    },
+    type: "ADD_TO_CART",
+    payload: { product, quantityToAdd}
   }
 }
 
-export function removeFromCart(_id: string): CartActions {
+export function deleteCartItem(product: Product) {
+  let quantityToSub = 1;
   return {
-    type: REMOVE_FROM_CART,
-    payload: {
-      _id,
-    },
+    type: 'DELETE_CART_ITEM',
+    payload: { product, quantityToSub }
   }
 }
-
-export function AddAllCountriesToCartAction(products: Product[]): CartActions {
-    return {
-        type: ADD_ALL_PRODUCTS_TO_CART,
-        payload: {
-            products,
-        }
-    }
+export function addQuantity(_id: string) {
+  let quantityToAdd = 1;
+  return {
+    type: "ADD_TO_CART",
+    payload: { _id, quantityToAdd }
+  }
 }
-
 

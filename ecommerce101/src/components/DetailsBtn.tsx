@@ -17,7 +17,7 @@ export default function DetailsBtn({ viewProduct }: UnoProps) {
           className="btn"
           onClick={() => viewProduct()}
         >
-          Product Details
+          Details
         </button>
       )}
     </div>

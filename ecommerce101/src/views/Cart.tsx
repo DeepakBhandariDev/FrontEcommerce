@@ -1,5 +1,5 @@
 import React from "react";
-import ProductCard from "../components/ProductCard";
+import CartCard from "../components/ProductCard";
 import { AppState } from "../types";
 import { useSelector } from "react-redux";
 import "./index.css";
@@ -15,7 +15,8 @@ export default function Cart() {
           <h1>Cart</h1>
         </div>
         {products.map((product) => (
-          <ProductCard
+
+          <CartCard
             _id={product._id}
             key={product.name}
             imageUrl={product.imageUrl}
@@ -25,6 +26,8 @@ export default function Cart() {
             category={product.category}
             price={product.price}
             countInStock={product.countInStock}
+            quantity={product.quantity}
+            
           />
         ))}
       </div>

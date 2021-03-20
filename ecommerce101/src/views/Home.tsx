@@ -10,11 +10,10 @@ export default function Home() {
  
  
     const { theme, switchTheme } = useContext(ThemeContext)
-    const style = { backgroundColor: theme.color }
+    //const style = { backgroundColor: theme.color }
 
   return (
-    <div className="home" style={style}>
-      <a href="/postProduct">Add product</a>
+    <div className="home" >
       <ProductList/>
       
     </div>
