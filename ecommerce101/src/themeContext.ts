@@ -4,8 +4,8 @@ export const themes = {
     blend: {
         color: '#12c7fd'
     },
-    dark: {
-        color: '#21130d'
+    sub: {
+        color: '#ffffff'
     },
     light: {
        color: '#a8dadc' 

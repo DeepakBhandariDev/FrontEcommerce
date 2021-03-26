@@ -1,19 +1,24 @@
-import React from "react";
+import React, { useContext } from "react";
 import Header from "../components/Header";
-import Login from "../components/Login";
 import { Formik } from "formik";
 import { postAProduct } from "../redux/actions/product";
 import { useDispatch, useSelector } from "react-redux";
 import {Product, AppState} from '../types'
 
+import ThemeContext from "../themeContext";
 
 
-export default function Home() {
+export default function PostProduct() {
   const dispatch = useDispatch();
   const token = useSelector((state: AppState) => state.user.token)
 
+const { theme, switchTheme } = useContext(ThemeContext);
+const style = { backgroundColor: theme.color };
+
+
   return (
-    <div className="form">
+    <div className="formOut" style={style}  >
+      <div className="formIn">
       <Formik
       
         initialValues={{
@@ -145,7 +150,7 @@ export default function Home() {
             </button>
           </form>
         )}
-      </Formik>
+      </Formik></div>
     </div>
   );
 }

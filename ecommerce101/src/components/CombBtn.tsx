@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ThemeContext from "../themeContext";
 import { addToCart } from "../redux/actions/cart";
 
-import { deleteCartItem } from "../redux/actions/cart";
+import { removeItem } from "../redux/actions/cart";
 
 export default function CombBtn({
   _id,
@@ -28,7 +28,7 @@ export default function CombBtn({
   const { theme, switchTheme } = useContext(ThemeContext);
   const style = { backgroundColor: theme.color };
 
-  const productIncludedInCart = cartProducts.find((c) => c.name === name);
+  const productIncludedInCart = cartProducts.find((c) => c._id === _id);
 
   const product = {
     _id,
@@ -45,9 +45,12 @@ export default function CombBtn({
   return (
     <div className="dv">
       
-        <button className="btn"  onClick={() => dispatch(addToCart(product))}>
-          AddCart
-        </button>
+      {!productIncludedInCart?
+            <button className="btn" onClick={()=>dispatch(addToCart(product))}>AddCart</button>
+            :
+            <button className="btn" onClick={()=>dispatch(removeItem(product))}>DelCart</button>
+}
+        
       
      
     </div>

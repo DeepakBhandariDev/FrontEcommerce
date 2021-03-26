@@ -1,17 +1,24 @@
+import { LOGOUT_USER,User, LOGIN_USER, UserAction } from '../../types';
 
 //import Axios from 'axios';
 
-import {LoginAction, User, LOGIN_USER} from '../../types'
 import { Dispatch } from 'redux'
 import axios from 'axios'
 
-export function loginUser(user: User,token:string): LoginAction {
+export function loginUser(user: User,token:string): UserAction {
     return {
       type: LOGIN_USER,
       payload: {
         user,
         token,
       },
+    }
+  }
+
+
+  export function logOutUser(): UserAction {
+    return {
+      type: LOGOUT_USER,
     }
   }
   
@@ -26,7 +33,6 @@ export function userToken(response: any) {
       .then((response) => {
         console.log(response);
         dispatch(loginUser(response.data.user, response.data.accessToken));
-        localStorage.set('token', JSON.stringify(response.data.accessToken))
       })
       .catch((error) => {
         console.log(error);

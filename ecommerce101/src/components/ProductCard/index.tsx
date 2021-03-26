@@ -44,12 +44,13 @@ export default function ProductCard({
 
   const { theme, switchTheme } = useContext(ThemeContext);
   const style = { backgroundColor: theme.color };
+ 
   const products = useSelector((state: AppState) => state.cart.cartProducts);
 
   return (
     <CardDeck className="card-deck" style={{ margin: "15px" }}>
       <Card key="name" className="cardIn">
-        <img src={imageUrl} />
+        <img src={imageUrl} onClick={viewProduct}/>
 
         <Card.Body className="card-body" style={style}>
           <Card.Title>

@@ -1,12 +1,15 @@
+
 export const LOGIN_USER = "LOGIN_USER";
 export const LOGOUT_USER = "LOGOUT_USER";
 export const ADD_ALL_PRODUCTS = "ADD_ALL_PRODUCTS";
 export const POST_PRODUCT = "POST_PRODUCT";
 export const ADD_TO_CART = "ADD_TO_CART";
-export const DELETE_CART_ITEM = "DELETE_CART_ITEM";
-export const ADD_QTY = "ADD_QTY";
-export const SUBTRACT_QUANTITY_CART_ITEM = "SUBTRACT_QUANTITY_CART_ITEM";
-
+export const REMOVE_ITEM = "REMOVE_ITEM";
+export const ADD_QUANTITY = "ADD_QUANTITY";
+export const SUB_QUANTITY = "SUB_QUANTITY";
+export const ADD_ALL_PRODUCTS_TO_CART = "ADD_ALL_PRODUCTS_TO_CART";
+export const POST_ORDER = "POST_ORDER"
+export const ADD_ALL_ORDER = "ADD_ALL_ORDER"
 
 export type User = {
   isAdmin: boolean;
@@ -39,12 +42,9 @@ export type Products = {
   products: Product[];
 };
 
-export type OrderItems = {
-  name: string;
+export type Items = {
   qty: number;
-  image: string;
-  price: number;
-  product: string;
+  productId: string;
 };
 
 export type ShippingAddress = {
@@ -56,14 +56,11 @@ export type ShippingAddress = {
 };
 
 export type Order = {
-  orderItems: [OrderItems];
-  shippingAddress: [ShippingAddress];
-  user: string;
+  cartProducts: [Items]
+  shippingAddress: ShippingAddress
+  userId: string
 };
 
-export type Orders = {
-  orders: Order[];
-};
 
 export type LoginAction = {
   type: typeof LOGIN_USER;
@@ -72,6 +69,15 @@ export type LoginAction = {
     token: string;
   };
 };
+
+export type LogOutAction = {
+  type: typeof LOGOUT_USER;
+};
+
+
+export type UserAction = LogOutAction | LoginAction
+
+
 
 export type AddAllProductsAction = {
   type: typeof ADD_ALL_PRODUCTS;
@@ -89,7 +95,14 @@ export type PostProductAction = {
 
 export type ProductsActions = AddAllProductsAction | PostProductAction;
 
-export type addToCart = {
+export type OrderAction = {
+  type: typeof ADD_ALL_ORDER;
+  payload: {
+    orders: Order[]; 
+  }
+}
+
+export type AddToCart = {
   type: typeof ADD_TO_CART;
   payload: {
     product: Product;
@@ -97,34 +110,45 @@ export type addToCart = {
 };
 };
 
-export type deleteCartItem = {
-  type: typeof DELETE_CART_ITEM;
+export type RemoveItem = {
+  type: typeof REMOVE_ITEM;
   payload: {
     product: Product
   };
 };
-export type addQuantity = {
-  type: typeof ADD_QTY;
+export type AddQuantity = {
+  type: typeof ADD_QUANTITY;
   payload: {
-    _id: string;
-    quantityToAdd: number;
+    product:Product;
   };
 };
-export type subtractQuantityToCartItem = {
-  type: typeof SUBTRACT_QUANTITY_CART_ITEM;
+export type SubtractQuantity = {
+  type: typeof SUB_QUANTITY;
   payload: {
-    _id: string;
+    product:Product;
+  };
+};
+export type AddAllProductsCart = {
+  type: typeof ADD_ALL_PRODUCTS_TO_CART;
+  payload: {
+    cartProducts:Product[];
   };
 };
 
 export type CartActions =
-  | addToCart
-  | deleteCartItem
-  | addQuantity
+  | AddToCart
+  | RemoveItem
+  | SubtractQuantity
+  | AddQuantity
+  | AddAllProductsCart
   
 
 export type ProductsState = {
   products: Product[];
+};
+
+export type OrderState = {
+  orders: Order[];
 };
 
 export type AuthState = {
@@ -133,12 +157,24 @@ export type AuthState = {
   user: User;
 };
 
+export type PostOrderAction = {
+  type:typeof POST_ORDER,
+  payload:{
+    shippingAddress:ShippingAddress
+  }
+}
+
 export type CartState = {
   cartProducts: Product[];
+  total: number;
 };
+
+
+
 
 export type AppState = {
   user: AuthState;
   product: ProductsState;
   cart: CartState;
+  order: OrderState;
 };

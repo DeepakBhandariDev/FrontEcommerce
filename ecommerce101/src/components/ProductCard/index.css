@@ -8,10 +8,12 @@
    
 }
 .card-deck :hover{
-    background-color: rgb(124, 122, 241);
+    animation-name: example2;
+    animation-duration: 4s;
+    animation-iteration-count: infinite;
     border-radius: 6px;
-    box-shadow: 10px 10px 2px 2px rgb(124, 122, 241);
-    color:white;
+    
+    color:black;
 }
 .card-deck img{
     width: 250px;

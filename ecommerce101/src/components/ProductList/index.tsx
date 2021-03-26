@@ -20,7 +20,7 @@ export default function ProductList() {
           category={product.category}
           price={product.price}
           countInStock={product.countInStock}
-          quantity={product.quantity}
+          quantity={1}
         />
       ))}
     </div>

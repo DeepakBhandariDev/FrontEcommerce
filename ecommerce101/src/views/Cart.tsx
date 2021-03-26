@@ -1,35 +1,47 @@
-import React from "react";
-import CartCard from "../components/ProductCard";
+import React, { useEffect, useContext  } from "react";
+import CartCard from "../components/CartCard";
+import ShippingAddressComp from "../components/ShippingAddressComp";
 import { AppState } from "../types";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import "./index.css";
 import { Link } from "react-router-dom";
+import ThemeContext, { themes } from '../themeContext'
 
 export default function Cart() {
+  const dispatch = useDispatch();
   const products = useSelector((state: AppState) => state.cart.cartProducts);
+  useEffect(() => {
+    localStorage.setItem("currentCart", JSON.stringify(products));
+  }, [dispatch]);
 
+  const { theme, switchTheme } = useContext(ThemeContext);
+  const style = { backgroundColor: theme.color };
+ 
   if (products.length !== 0) {
     return (
-      <div className="crdd">
-        <div className="hdd">
-          <h1>Cart</h1>
-        </div>
-        {products.map((product) => (
-
-          <CartCard
-            _id={product._id}
-            key={product.name}
-            imageUrl={product.imageUrl}
-            name={product.name}
-            description={product.description}
-            brand={product.brand}
-            category={product.category}
-            price={product.price}
-            countInStock={product.countInStock}
-            quantity={product.quantity}
+      <div className="all" style={style}>
+        
             
-          />
-        ))}
+          <div className="cartCard">
+            {products.map((product) => (
+              <CartCard
+                _id={product._id}
+                key={product.name}
+                imageUrl={product.imageUrl}
+                name={product.name}
+                description={product.description}
+                brand={product.brand}
+                category={product.category}
+                price={product.price}
+                countInStock={product.countInStock}
+                quantity={product.quantity}
+              />
+            ))}
+          </div>
+        <div className="address">
+        <h1>Cart</h1>
+          <ShippingAddressComp/>
+        </div>
       </div>
     );
   }
